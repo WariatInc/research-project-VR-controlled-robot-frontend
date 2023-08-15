@@ -27,20 +27,13 @@
           {{ this.username }}
         </p>
       </div>
-      <button
-        *ngIf="authService.userIsAuthenticated"
-        mat-raised-button
-        (click)="goEventDashboard()"
-      >
-        Panel Eventów
-      </button>
 
       <button
         *ngIf="authService.userIsAuthenticated"
         mat-raised-button
         (click)="goReservationList()"
       >
-        Moje rezerwacje
+        Dostępne roboty
       </button>
       <button
         mat-raised-button

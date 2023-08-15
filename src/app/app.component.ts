@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   public goReservationList(): void {
-    this.router.navigate(['./reservation-list']);
+    this.router.navigate(['./robot-list']);
   }
 
   public goEventDashboard(): void {
