@@ -1,16 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './common/service/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'RSWW Travel Agency App';
   username: string | null | undefined;
 
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+  ) {}
   ngOnInit() {
     this.authUser();
   }
