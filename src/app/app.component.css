@@ -1,0 +1,81 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.material-icons {
+  margin-left: 4px;
+  font-family: "Material Icons" !important;
+}
+
+button {
+  margin: 5px;
+}
+
+span:hover {
+  color: red;
+}
+span:active {
+  color: green;
+}
+
+body {
+  background: white;
+  max-height: 93%;
+  width: 98.97vw;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  min-height: 100%;
+  width: 99%;
+  max-width: 1200px;
+  background: white;
+  color: black;
+  justify-content: center;
+}
+
+.toolbar {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  display: flex;
+  background: #673ab7;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.container {
+  justify-content: center;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+app-offer-list {
+  min-width: 100%;
+}
+
+.logo {
+  max-height: 125%;
+  max-width: 50%;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
