@@ -35,6 +35,10 @@
       >
         Dostępne roboty
       </button>
+      <button mat-raised-button (click)="goAbout()">
+        About
+        <span class="material-icons" iconPositionEnd> info </span>
+      </button>
       <button
         mat-raised-button
         *ngIf="!authService.userIsAuthenticated; else logout"
