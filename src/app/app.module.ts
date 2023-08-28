@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthGuard } from './common/guard/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['./about']);
   }
 
-  public goReservationList(): void {
+  public goRobotList(): void {
     this.router.navigate(['./robot-list']);
   }
 
