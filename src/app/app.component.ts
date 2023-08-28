@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['./login']);
   }
 
+  public goAbout(): void {
+    this.router.navigate(['./about']);
+  }
+
   public goReservationList(): void {
     this.router.navigate(['./robot-list']);
   }
