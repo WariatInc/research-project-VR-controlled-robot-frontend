@@ -21,7 +21,7 @@ export class AuthService {
   constructor(
     private router: Router,
     private _snackbar: MatSnackBar,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   logout(): void {
@@ -39,7 +39,7 @@ export class AuthService {
       if (this.redirectUrl) {
         this.router.navigateByUrl(this.redirectUrl);
       } else {
-        this.router.navigateByUrl('./');
+        this.router.navigateByUrl('');
       }
     }
   }
