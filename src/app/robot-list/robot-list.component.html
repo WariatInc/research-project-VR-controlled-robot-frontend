@@ -1,1 +1,38 @@
-<p>robot-list works!</p>
+<div *ngIf="loaded; else loading">
+  <div>
+    <ul>
+      <li *ngFor="let robot of robotList.list">
+        <div class="robot-list">
+          <div class="image">
+            <img src="assets/img/robot.png" alt="obrazek" />
+          </div>
+          <div class="details">
+            <p><strong>Nazwa: </strong></p>
+            <p><strong>ID: </strong></p>
+            <p><strong>Dostępność: </strong></p>
+            <p><strong>Cena: </strong></p>
+
+            <button
+              (click)="navigateToRobot(robot.id)"
+              class="bf-button"
+              mat-raised-button
+            >
+              Rezerwuj i zapłać
+            </button>
+          </div>
+
+          <div class="next-details">
+            <p>{{ robot.name }}</p>
+            <p>{{ robot.id }}</p>
+            <p>{{ robot.availability }}</p>
+            <p>{{ robot.price }} BTC/godz</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
