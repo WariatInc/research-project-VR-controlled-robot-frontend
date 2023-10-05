@@ -18,6 +18,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./about/about.module').then((m) => m.AboutModule),
   },
+  { path: 'logout', loadChildren: () => import('../logout/logout.module').then(m => m.LogoutModule) },
 ];
 
 @NgModule({

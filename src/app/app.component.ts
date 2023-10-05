@@ -21,8 +21,6 @@ export class AppComponent implements OnInit {
       this.authUser(params['token']);
     });
     this.username = this.authService.username;
-    console.log('xdd');
-    console.log(this.authService.userIsAuthenticated);
   }
 
   private authUser(token: string): void {
@@ -45,8 +43,7 @@ export class AppComponent implements OnInit {
   }
 
   public logoutUser(): void {
-    this.router.navigate(['./']);
-    this.authService.logout();
+    this.router.navigate(['./logout']);
   }
 
   public goHome(): void {

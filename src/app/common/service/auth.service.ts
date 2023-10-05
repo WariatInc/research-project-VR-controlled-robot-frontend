@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ErrorService } from './error.service';
@@ -28,16 +28,18 @@ export class AuthService {
     private cookieService: CookieService,
   ) {}
 
-  logout(): void {
+  logout(): Observable<void> {
     this.userIsAuthenticated = false;
     this.username = '';
     this.cookieService.deleteAll();
+    return of(void 0);
   }
 
   authUser(token: string): void {
     if (!this.userIsAuthenticated) {
       const username = this.cookieService.get('username');
-      if (username !== undefined) {
+      console.log(username);
+      if (username.length > 1) {
         this.userIsAuthenticated = true;
         this.username = username;
       }
