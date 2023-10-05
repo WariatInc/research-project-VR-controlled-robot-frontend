@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './common/service/auth.service';
 
 @Component({
@@ -13,19 +13,27 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     public authService: AuthService,
   ) {}
   ngOnInit() {
-    this.authUser();
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.authUser(params['token']);
+    });
+    this.username = this.authService.username;
+    console.log('xdd');
+    console.log(this.authService.userIsAuthenticated);
   }
 
-  private authUser(): void {
-    this.authService.userIsAuth();
-    this.username = localStorage.getItem('token');
+  private authUser(token: string): void {
+    this.authService.authUser(token);
   }
 
   public goLogin(): void {
-    this.router.navigate(['./login']);
+    window.open(
+      'http://localhost:8000/api/auth?redirect_uri=http://localhost:4200/',
+      '_self',
+    );
   }
 
   public goAbout(): void {
@@ -36,13 +44,9 @@ export class AppComponent implements OnInit {
     this.router.navigate(['./robot-list']);
   }
 
-  public goEventDashboard(): void {
-    this.router.navigate(['./event-dashboard']);
-  }
-
   public logoutUser(): void {
-    this.authService.logout();
     this.router.navigate(['./']);
+    this.authService.logout();
   }
 
   public goHome(): void {
