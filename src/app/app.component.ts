@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   public goRobotList(): void {
-    this.router.navigate(['./robot-list']);
+    this.router.navigate(['./device-list']);
   }
 
   public logoutUser(): void {

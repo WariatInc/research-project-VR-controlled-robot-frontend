@@ -2,30 +2,36 @@
   <div>
     <ul>
       <li *ngFor="let robot of robotList.list">
-        <div class="robot-list">
+        <div class="device-list">
           <div class="image">
             <img src="assets/img/robot.png" alt="obrazek" />
           </div>
           <div class="details">
             <p><strong>Nazwa: </strong></p>
             <p><strong>ID: </strong></p>
-            <p><strong>Dostępność: </strong></p>
-            <p><strong>Cena: </strong></p>
+            <p><strong>Opis: </strong></p>
+            <p><strong>Lokacja: </strong></p>
 
             <button
               (click)="navigateToRobot(robot.id)"
               class="bf-button"
               mat-raised-button
             >
-              Rezerwuj i zapłać
+              Rezerwuj
             </button>
           </div>
 
           <div class="next-details">
             <p>{{ robot.name }}</p>
             <p>{{ robot.id }}</p>
-            <p>{{ robot.availability }}</p>
-            <p>{{ robot.price }} BTC/godz</p>
+            <p>
+              {{
+                robot.description.length > 40
+                  ? (robot.description | slice: 0 : 40) + "..."
+                  : robot.description
+              }}
+            </p>
+            <p>{{ robot.location }}</p>
           </div>
         </div>
       </li>

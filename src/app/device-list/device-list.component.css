@@ -2,7 +2,7 @@
   display: none;
 }
 
-.robot-list {
+.device-list {
   margin-top: 0.5%;
   padding-left: 1%;
   padding-right: 1%;
@@ -55,7 +55,7 @@ ul {
   padding: 0;
 }
 
-/*.robot-list:hover {*/
+/*.device-list:hover {*/
 /*  cursor: pointer;*/
 /*}*/
 
