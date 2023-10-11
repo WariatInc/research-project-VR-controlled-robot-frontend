@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './common/service/auth.service';
 
 @Component({
@@ -16,16 +16,12 @@ export class AppComponent implements OnInit {
     public authService: AuthService,
   ) {}
   ngOnInit() {
-    this.authUser();
-  }
-
-  private authUser(): void {
-    this.authService.userIsAuth();
-    this.username = localStorage.getItem('token');
+    this.authService.authUser();
+    this.username = this.authService.username;
   }
 
   public goLogin(): void {
-    this.router.navigate(['./login']);
+    this.authService.login();
   }
 
   public goAbout(): void {
@@ -36,13 +32,8 @@ export class AppComponent implements OnInit {
     this.router.navigate(['./robot-list']);
   }
 
-  public goEventDashboard(): void {
-    this.router.navigate(['./event-dashboard']);
-  }
-
   public logoutUser(): void {
-    this.authService.logout();
-    this.router.navigate(['./']);
+    this.router.navigate(['./logout']);
   }
 
   public goHome(): void {

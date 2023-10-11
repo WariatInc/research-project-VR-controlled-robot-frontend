@@ -1,0 +1,8 @@
+.centered {
+  padding-top: 2%;
+  text-align: center;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}

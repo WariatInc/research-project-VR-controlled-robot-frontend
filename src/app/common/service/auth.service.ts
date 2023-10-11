@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ErrorService } from './error.service';
+import { CookieService } from 'ngx-cookie-service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 let apiUrl = environment.API_URL;
 
@@ -17,45 +19,50 @@ export class AuthService {
   public userIsAuthenticated: boolean = false;
   public redirectUrl: string | undefined;
   private sessionId: string | undefined;
+  public username!: string;
 
   constructor(
     private router: Router,
     private _snackbar: MatSnackBar,
     private http: HttpClient,
+    private cookieService: CookieService,
   ) {}
 
   logout(): void {
-    localStorage.setItem('isLoggedIn', 'false');
-    localStorage.removeItem('token');
-    this.userIsAuth();
+    this.userIsAuthenticated = false;
+    this.username = '';
+    this.cookieService.deleteAll('/', '');
+    this.router.navigate(['.']);
   }
 
-  login(value: any): void {
-    if (value) {
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('token', value);
-      this.userIsAuth();
+  authToken(token: string): void {
+    if (token !== undefined) {
+      const decodedToken = atob(token);
+      const jsonToken = JSON.parse(decodedToken);
+      const id_token = jsonToken['id_token'];
+      const username = jsonToken['userinfo']['name'];
+      this.username = username;
+      this.cookieService.set('id_token', id_token, 10, '/', '', true, 'None');
+      this.cookieService.set('username', username, 10, '/', '', true, 'None');
+      this.userIsAuthenticated = true;
+    }
+  }
 
-      if (this.redirectUrl) {
-        this.router.navigateByUrl(this.redirectUrl);
-      } else {
-        this.router.navigateByUrl('');
+  login(): void {
+    window.open(
+      'http://localhost:8000/api/auth?redirect_uri=http://localhost:4200/login/',
+      '_self',
+    );
+  }
+
+  authUser(): void {
+    if (!this.userIsAuthenticated) {
+      const username = this.cookieService.get('username');
+      if (username.length > 1) {
+        this.userIsAuthenticated = true;
+        this.username = username;
       }
     }
-  }
-
-  userIsAuth(): void {
-    this.userIsAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
-  }
-
-  getUserInfo(): string | string[] {
-    let userInfo = localStorage.getItem('token');
-
-    if (userInfo === null) {
-      userInfo = '';
-    }
-
-    return userInfo;
   }
 
   doIfUserLoggedIn(callback: () => void, redirectUrl: string = ''): void {
@@ -74,28 +81,5 @@ export class AuthService {
       .subscribe(() => {
         this.router.navigate(['login']);
       });
-  }
-
-  postSessionInfo(page: string): void {
-    this.redirectUrl = page;
-
-    const session_id = localStorage.getItem('session_id');
-
-    if (session_id) {
-      this.http
-        .post<void>(sessionUrl, {
-          webapp_page: page,
-          session_id: session_id,
-        })
-        .subscribe((response: any) => {
-          localStorage.setItem('session_id', response.session_id);
-        });
-    } else {
-      this.http
-        .post<void>(sessionUrl, { webapp_page: page })
-        .subscribe((response: any) => {
-          localStorage.setItem('session_id', response.session_id);
-        });
-    }
   }
 }
