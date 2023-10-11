@@ -6,12 +6,14 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private cookieService: CookieService,
   ) {}
 
   canActivate(
@@ -28,9 +30,8 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    this.authService.redirectUrl = url;
-
-    this.router.navigate(['/login']);
+    this.cookieService.set('redirect_url', url, 10, '/', '', true, 'None');
+    this.authService.login();
     return false;
   }
 }

@@ -13,25 +13,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     public authService: AuthService,
   ) {}
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.authUser(params['token']);
-    });
+    this.authService.authUser();
     this.username = this.authService.username;
   }
 
-  private authUser(token: string): void {
-    this.authService.authUser(token);
-  }
-
   public goLogin(): void {
-    window.open(
-      'http://localhost:8000/api/auth?redirect_uri=http://localhost:4200/',
-      '_self',
-    );
+    this.authService.login();
   }
 
   public goAbout(): void {

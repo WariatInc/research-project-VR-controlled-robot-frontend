@@ -28,31 +28,40 @@ export class AuthService {
     private cookieService: CookieService,
   ) {}
 
-  logout(): Observable<void> {
+  logout(): void {
     this.userIsAuthenticated = false;
     this.username = '';
-    this.cookieService.deleteAll();
-    return of(void 0);
+    this.cookieService.deleteAll('/', '');
+    this.router.navigate(['.']);
   }
 
-  authUser(token: string): void {
-    if (!this.userIsAuthenticated) {
-      const username = this.cookieService.get('username');
-      console.log(username);
-      if (username.length > 1) {
-        this.userIsAuthenticated = true;
-        this.username = username;
-      }
-    }
+  authToken(token: string): void {
     if (token !== undefined) {
       const decodedToken = atob(token);
       const jsonToken = JSON.parse(decodedToken);
       const id_token = jsonToken['id_token'];
       const username = jsonToken['userinfo']['name'];
       this.username = username;
-      this.cookieService.set('id_token', id_token);
-      this.cookieService.set('username', username);
+      this.cookieService.set('id_token', id_token, 10, '/', '', true, 'None');
+      this.cookieService.set('username', username, 10, '/', '', true, 'None');
       this.userIsAuthenticated = true;
+    }
+  }
+
+  login(): void {
+    window.open(
+      'http://localhost:8000/api/auth?redirect_uri=http://localhost:4200/login/',
+      '_self',
+    );
+  }
+
+  authUser(): void {
+    if (!this.userIsAuthenticated) {
+      const username = this.cookieService.get('username');
+      if (username.length > 1) {
+        this.userIsAuthenticated = true;
+        this.username = username;
+      }
     }
   }
 

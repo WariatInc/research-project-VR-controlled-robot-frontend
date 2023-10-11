@@ -8,16 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./logout.component.css'],
 })
 export class LogoutComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     setTimeout(() => {
-      this.authService.logout().subscribe(() => {
-        this.router.navigate(['./']);
-      });
+      this.authService.logout();
     }, 2000);
   }
 }

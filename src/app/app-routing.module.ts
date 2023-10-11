@@ -19,6 +19,7 @@ const routes: Routes = [
       import('./about/about.module').then((m) => m.AboutModule),
   },
   { path: 'logout', loadChildren: () => import('../logout/logout.module').then(m => m.LogoutModule) },
+  { path: 'login', loadChildren: () => import('../login/login.module').then(m => m.LoginModule) },
 ];
 
 @NgModule({
