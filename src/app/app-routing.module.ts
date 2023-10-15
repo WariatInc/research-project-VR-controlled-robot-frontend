@@ -23,17 +23,17 @@ const routes: Routes = [
   {
     path: 'logout',
     loadChildren: () =>
-      import('../logout/logout.module').then((m) => m.LogoutModule),
+      import('./logout/logout.module').then((m) => m.LogoutModule),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('../login/login.module').then((m) => m.LoginModule),
+      import('./login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'device',
     loadChildren: () =>
-      import('../device/device.module').then((m) => m.DeviceModule),
+      import('./device/device.module').then((m) => m.DeviceModule),
   },
 ];
 
