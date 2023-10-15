@@ -7,7 +7,7 @@ const routes: Routes = [
     path: 'device-list',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./device-list/device-list.module').then(
+      import('./devices/device-list/device-list.module').then(
         (m) => m.DeviceListModule,
       ),
   },
@@ -33,7 +33,14 @@ const routes: Routes = [
   {
     path: 'device',
     loadChildren: () =>
-      import('./device/device.module').then((m) => m.DeviceModule),
+      import('./devices/device/device.module').then((m) => m.DeviceModule),
+  },
+  {
+    path: 'add_device',
+    loadChildren: () =>
+      import('./devices/add-device/add-device.module').then(
+        (m) => m.AddDeviceModule,
+      ),
   },
 ];
 

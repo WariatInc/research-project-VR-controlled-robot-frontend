@@ -1,9 +1,9 @@
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeviceListResponse } from '../model/device-list-response';
 import { Observable } from 'rxjs';
-import { ErrorService } from '../../common/service/error.service';
+import { ErrorService } from '../../../common/service/error.service';
 
 let apiUrl = environment.API_URL;
 const deviceListUrl = apiUrl + 'streams/';
