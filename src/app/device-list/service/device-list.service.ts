@@ -6,7 +6,7 @@ import { catchError, Observable } from 'rxjs';
 import { ErrorService } from '../../common/service/error.service';
 
 let apiUrl = environment.API_URL;
-const robotListUrl = 'http://localhost:8001/api/' + 'robot-list/';
+const deviceListUrl = apiUrl + 'streams/';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class DeviceListService {
       'Content-Type': 'application/json',
     });
     let options = { headers: headers };
-    return this.http.get<DeviceListResponse>(robotListUrl, options).pipe(
+    return this.http.get<DeviceListResponse>(deviceListUrl, options).pipe(
       catchError((error) => {
         return this.errorService.errorCatcher(error);
       }),
