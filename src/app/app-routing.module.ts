@@ -5,7 +5,7 @@ import { AuthGuard } from './common/guard/auth.guard';
 const routes: Routes = [
   {
     path: 'device-list',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./device-list/device-list.module').then(
         (m) => m.DeviceListModule,
@@ -30,7 +30,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('../login/login.module').then((m) => m.LoginModule),
   },
-  { path: 'device', loadChildren: () => import('../device/device.module').then(m => m.DeviceModule) },
+  {
+    path: 'device',
+    loadChildren: () =>
+      import('../device/device.module').then((m) => m.DeviceModule),
+  },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from './common/service/auth.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { AuthService } from './common/service/auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'RSWW Travel Agency App';
   username: string | null | undefined;
 
   constructor(
@@ -28,7 +27,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['./about']);
   }
 
-  public goRobotList(): void {
+  public goDeviceList(): void {
     this.router.navigate(['./device-list']);
   }
 

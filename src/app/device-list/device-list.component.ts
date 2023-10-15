@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Robot, DeviceListResponse } from './model/device-list-response';
+import { DeviceListResponse } from './model/device-list-response';
 import { DeviceListService } from './service/device-list.service';
 import { Router } from '@angular/router';
 
@@ -9,22 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./device-list.component.css'],
 })
 export class DeviceListComponent implements OnInit {
-  public robotList!: DeviceListResponse;
+  public deviceList!: DeviceListResponse;
   public loaded: boolean = false;
 
   constructor(
-    private robotListService: DeviceListService,
+    private deviceListService: DeviceListService,
     private router: Router,
   ) {}
 
   ngOnInit() {
-    this.robotListService.getList().subscribe((robotList) => {
-      this.robotList = robotList;
+    this.deviceListService.getList().subscribe((deviceList) => {
+      this.deviceList = deviceList;
       this.loaded = true;
     });
   }
 
   public navigateToRobot(id: string): void {
-    this.router.navigate(['robot/' + id]);
+    this.router.navigate(['device/' + id]);
   }
 }

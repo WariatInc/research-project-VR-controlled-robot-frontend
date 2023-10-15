@@ -2,7 +2,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeviceListResponse } from '../model/device-list-response';
-import { catchError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ErrorService } from '../../common/service/error.service';
 
 let apiUrl = environment.API_URL;
@@ -22,10 +22,6 @@ export class DeviceListService {
       'Content-Type': 'application/json',
     });
     let options = { headers: headers };
-    return this.http.get<DeviceListResponse>(deviceListUrl, options).pipe(
-      catchError((error) => {
-        return this.errorService.errorCatcher(error);
-      }),
-    );
+    return this.http.get<DeviceListResponse>(deviceListUrl, options);
   }
 }

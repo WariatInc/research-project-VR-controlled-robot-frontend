@@ -16,8 +16,6 @@
 }
 
 .bf-button {
-  /*width: 25%;*/
-  /*height: 3.4rem;*/
   color: white;
   background-color: #2b3d41;
 }
@@ -55,20 +53,12 @@ ul {
   padding: 0;
 }
 
-/*.device-list:hover {*/
-/*  cursor: pointer;*/
-/*}*/
-
 .details {
-  /*display: flex;*/
-  /*flex-direction: column;*/
   margin-left: 10%;
   justify-content: space-between;
 }
 
 .next-details {
-  /*display: flex;*/
-  /*flex-direction: column;*/
   margin-left: 10%;
   justify-content: space-between;
 }

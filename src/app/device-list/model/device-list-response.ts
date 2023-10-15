@@ -1,4 +1,4 @@
-export interface Robot {
+export interface Device {
   id: string;
   name: string;
   description: string;
@@ -6,5 +6,5 @@ export interface Robot {
 }
 
 export interface DeviceListResponse {
-  list: Robot[];
+  list: Device[];
 }
