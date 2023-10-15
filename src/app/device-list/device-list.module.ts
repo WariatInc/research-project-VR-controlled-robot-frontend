@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RobotListRoutingModule } from './robot-list-routing.module';
-import { RobotListComponent } from './robot-list.component';
+import { DeviceListRoutingModule } from './device-list-routing.module';
+import { DeviceListComponent } from './device-list.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [RobotListComponent],
+  declarations: [DeviceListComponent],
   imports: [
     CommonModule,
-    RobotListRoutingModule,
+    DeviceListRoutingModule,
     MatProgressSpinnerModule,
     MatButtonModule,
   ],
 })
-export class RobotListModule {}
+export class DeviceListModule {}

@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { ErrorService } from './error.service';
 import { CookieService } from 'ngx-cookie-service';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 let apiUrl = environment.API_URL;
-
-const sessionUrl = apiUrl + 'api/users/sessions';
+let frontUrl = environment.FRONT_URL;
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   public userIsAuthenticated: boolean = false;
-  public redirectUrl: string | undefined;
-  private sessionId: string | undefined;
   public username!: string;
 
   constructor(
@@ -49,10 +43,7 @@ export class AuthService {
   }
 
   login(): void {
-    window.open(
-      'http://localhost:8000/api/auth?redirect_uri=http://localhost:4200/login/',
-      '_self',
-    );
+    window.open(apiUrl + 'auth?redirect_uri=' + frontUrl + '/login/', '_self');
   }
 
   authUser(): void {
@@ -65,21 +56,16 @@ export class AuthService {
     }
   }
 
-  doIfUserLoggedIn(callback: () => void, redirectUrl: string = ''): void {
-    if (this.userIsAuthenticated) {
-      callback();
-    } else {
-      this.redirectUrl = redirectUrl;
-      this.goToLoginSnackbar();
-    }
-  }
-
   goToLoginSnackbar(): void {
     this._snackbar
       .open('Żeby to zrobić musisz się zalogować', 'OK')
       .onAction()
       .subscribe(() => {
-        this.router.navigate(['login']);
+        this.login();
       });
+  }
+
+  getUserToken(): string {
+    return this.cookieService.get('id_token');
   }
 }

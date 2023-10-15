@@ -10,6 +10,6 @@ export class HomeComponent {
   constructor(private router: Router) {}
 
   public goRobotList(): void {
-    this.router.navigate(['./robot-list']);
+    this.router.navigate(['./device-list']);
   }
 }

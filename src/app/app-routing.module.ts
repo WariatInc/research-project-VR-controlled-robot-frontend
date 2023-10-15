@@ -4,10 +4,12 @@ import { AuthGuard } from './common/guard/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'robot-list',
+    path: 'device-list',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./robot-list/robot-list.module').then((m) => m.RobotListModule),
+      import('./device-list/device-list.module').then(
+        (m) => m.DeviceListModule,
+      ),
   },
   {
     path: '',
@@ -18,8 +20,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./about/about.module').then((m) => m.AboutModule),
   },
-  { path: 'logout', loadChildren: () => import('../logout/logout.module').then(m => m.LogoutModule) },
-  { path: 'login', loadChildren: () => import('../login/login.module').then(m => m.LoginModule) },
+  {
+    path: 'logout',
+    loadChildren: () =>
+      import('./logout/logout.module').then((m) => m.LogoutModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'device',
+    loadChildren: () =>
+      import('./device/device.module').then((m) => m.DeviceModule),
+  },
 ];
 
 @NgModule({
