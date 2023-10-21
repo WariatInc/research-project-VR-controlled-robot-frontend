@@ -1,1 +1,22 @@
-<p>add-device works!</p>
+<h2 class="section-heading">Add streaming device</h2>
+<form [formGroup]="newDeviceForm" (submit)="submit()">
+  <label for="name">Name</label>
+  <input id="name" type="text" formControlName="name" />
+
+  <label for="location">Location</label>
+  <input id="location" type="text" formControlName="location" />
+
+  <label for="name">Description</label>
+  <input id="description" type="text" formControlName="description" />
+
+  <label for="video_url">video_url</label>
+  <input id="video_url" type="text" formControlName="video_url" />
+
+  <label for="api_url">api_url</label>
+  <input id="api_url" type="text" formControlName="api_url" />
+
+  <label for="secret">Secret</label>
+  <input id="secret" type="text" formControlName="secret" />
+
+  <button type="submit" class="primary">Add</button>
+</form>

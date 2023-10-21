@@ -4,7 +4,3 @@ export interface Device {
   description: string;
   location: string;
 }
-
-export interface DeviceListResponse {
-  list: Device[];
-}

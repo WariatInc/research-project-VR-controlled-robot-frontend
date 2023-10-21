@@ -3,15 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { AddDeviceRoutingModule } from './add-device-routing.module';
 import { AddDeviceComponent } from './add-device.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AddDeviceComponent
-  ],
-  imports: [
-    CommonModule,
-    AddDeviceRoutingModule
-  ]
+  declarations: [AddDeviceComponent],
+  imports: [CommonModule, AddDeviceRoutingModule, ReactiveFormsModule],
 })
-export class AddDeviceModule { }
+export class AddDeviceModule {}

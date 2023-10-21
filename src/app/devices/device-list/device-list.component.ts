@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceListResponse } from './model/device-list-response';
-import { DeviceListService } from './service/device-list.service';
+import { DeviceService } from '../services/device.service';
 import { Router } from '@angular/router';
+import { Device } from '../models/device';
 
 @Component({
   selector: 'app-device-list',
@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./device-list.component.css'],
 })
 export class DeviceListComponent implements OnInit {
-  public deviceList!: DeviceListResponse;
+  public deviceList!: Device[];
   public loaded: boolean = false;
 
   constructor(
-    private deviceListService: DeviceListService,
+    private deviceListService: DeviceService,
     private router: Router,
   ) {}
 
